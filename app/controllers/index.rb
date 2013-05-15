@@ -9,7 +9,10 @@ post '/rolls' do
   # See: roll_if_value_is_nil method in the Roll model.
   value = params[:value] ? params[:value].to_i : nil
 
-  @roll = value ? Roll.create({ value: value }) : Roll.create
-
-  erb :index  # HINT: what does this do? what should we do instead?
+  roll = rand(1..6)
+  @roll = roll
+  content_type :json
+  {roll: roll}.to_json
+  
+ # HINT: what does this do? what should we do instead?
 end
